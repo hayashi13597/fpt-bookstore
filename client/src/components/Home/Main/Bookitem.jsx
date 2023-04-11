@@ -12,7 +12,7 @@ const Bookitem = ({ book, handleShowModal }) => {
   } = book;
   return (
     <div
-      className="flex flex-col p-3 bg-second rounded-xl shadow-second shadow-md"
+      className="flex flex-col p-3 bg-secondBg rounded-xl shadow-secondBg shadow-md"
       onClick={() => handleShowModal(book)}
     >
       <img
@@ -21,7 +21,7 @@ const Bookitem = ({ book, handleShowModal }) => {
         alt={title}
       />
       <div className="py-3 text-center font-bold line-clamp-2">{title}</div>
-      <div className="py-1 my-2 bg-primary text-center text-second text-base">
+      <div className="py-1 my-2 bg-primaryBg text-center text-secondBg text-base">
         {amount ?? 20000}
       </div>
     </div>

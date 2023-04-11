@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const OrderSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
+const OrderSchema = Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'users',
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-});
-module.exports = mongoose.model("orders", OrderSchema);
+  productId: [{
+    type: String,
+    required: true,
+  }],
+  paypalPayment: {
+    type: Object
+  }
+}, { timestamps: true })
+
+module.exports = mongoose.model('orders', OrderSchema);

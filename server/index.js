@@ -1,30 +1,17 @@
 const express = require("express");
-const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
 
-const authRouter = require("./routes/auth");
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@fptbookstore.8ydbthz.mongodb.net/?retryWrites=true&w=majority`
-    );
-
-    console.log("MongonDB connected");
-  } catch (err) {
-    console.log(err.message);
-    process.exit(1);
-  }
-};
-
-connectDB();
+const authApi = require("./routes/auth");
+const orderApi = require("./routes/orderApi");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static('./public'));
 
-app.use("/api/auth", authRouter);
+authApi(app);
+orderApi(app);
 
 const PORT = 5000;
 
